@@ -1,0 +1,65 @@
+<div class="container">
+  <div class="banner">
+    <h1>PC Builder</h1>
+  </div>
+  <div class="wrapper">
+    <form class="builder" #formularz="ngForm">
+      <div class="graphic">
+        <label for="grahpic_card">Karty graficzne</label>
+        <select name="grahpic_card" [(ngModel)]="karta" required #graphicfield="ngModel">
+          <option *ngFor="let item of karty" [ngValue]="item" >{{item.nazwa}} {{item.cena}}zł</option>
+        </select>
+        <div class="alert" *ngIf="graphicfield.invalid && graphicfield.touched">
+          <p>Dokonaj wyboru</p>
+        </div>
+      </div>
+
+      <div class="cpu">
+        <label for="procesory">Procesory</label>
+        <select name="procesory" [(ngModel)]="procesor" required #procesorfield="ngModel">
+          <option *ngFor="let item of procesory" [ngValue]="item">{{item.nazwa}} {{item.cena}}zł</option>
+        </select>
+        <div class="alert" *ngIf="procesorfield.invalid && procesorfield.touched">
+          <p>Dokonaj wyboru</p>
+        </div>
+      </div>
+
+      <div class="harddrive">
+        <label for="dyski">Dyski</label>
+        <select name="dyski" [(ngModel)]="dysk" required #drivefield="ngModel">
+          <option *ngFor="let item of dyski" [ngValue]="item">{{item.nazwa}} {{item.cena}}zł</option>
+        </select>
+        <div class="alert" *ngIf="drivefield.invalid && drivefield.touched">
+          <p>Dokonaj wyboru</p>
+        </div>
+      </div>
+
+      <div class="ram">
+        <label for="pamiec">Pamiec RAM</label>
+        <select name="pamiec" [(ngModel)]="pamiec" required #ramfield="ngModel">
+          <option *ngFor="let item of ram" [ngValue]="item">{{item.nazwa}} {{item.cena}}zł</option>
+        </select>
+        <div class="alert" *ngIf="ramfield.invalid && ramfield.touched">
+          <p>Dokonaj wyboru</p>
+        </div>
+      </div>
+
+      <div class="case">
+        <label for="obudowa">Obudowy</label>
+        <select name="obudowa" [(ngModel)]="obudowa" required #casefield="ngModel">
+          <option *ngFor="let item of obudowy" [ngValue]="item">{{item.nazwa}} {{item.cena}}zł</option>
+        </select>
+        <div class="alert" *ngIf="casefield.invalid && casefield.touched">
+          <p>Dokonaj wyboru</p>
+        </div>
+      </div>
+      <div class="buttons">
+        <input type="submit" id="btn" class="resultBtn" value="Oblicz" (click)="oblicz()" [disabled]="!formularz.valid">
+        <button class="reset" id="btn" (click)="resetuj()" >Resetuj</button>
+      </div>
+    </form>
+    <div class="result" *ngIf="wyslane">
+      <p>Cena komputera: {{cena}}zł</p>
+    </div>
+  </div>
+</div>
